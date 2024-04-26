@@ -94,10 +94,10 @@ public extension UIImage {
     
     // Overlay
     @objc func overlayImage(_ overlay: UIImage, position: CGPoint, scale: CGFloat) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(size, true, scale);
+        UIGraphicsBeginImageContextWithOptions(size, false, scale);
         draw(in: CGRect(origin: .zero, size: size))
         let overlayRect = CGRect(origin: position, size: overlay.size )
-        overlay.draw(in: overlayRect)
+        overlay.draw(in: overlayRect, blendMode: .copy, alpha: 1.0)
         
         let result = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
